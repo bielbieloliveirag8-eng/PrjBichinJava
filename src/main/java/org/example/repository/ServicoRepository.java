@@ -2,6 +2,10 @@ package org.example.repository;
 
 import org.example.model.Servico;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +16,7 @@ public class ServicoRepository {
         this.servicos = new ArrayList<>();
     }
 
-    public Servico buscarPorId(int id){
+    public Servico buscarPorId(int id) {
         for (int i = 0; i < servicos.size(); i++) {
             if (servicos.get(i) != null) {
                 if (servicos.get(i).getId() == id) {
@@ -24,15 +28,15 @@ public class ServicoRepository {
         return null;
     }
 
-    public List<Servico> listar(){
+    public List<Servico> listar() {
         return servicos;
     }
 
-    public void adicionar(Servico servico){
+    public void adicionar(Servico servico) {
         servicos.add(servico);
     }
 
-    private boolean remover(int id){
+    public boolean remover(int id) {
         Servico servico = buscarPorId(id);
 
         if (servico != null) {
@@ -43,7 +47,27 @@ public class ServicoRepository {
         return false;
     }
 
-    public void carregarDados(String arquivo){
+    public void carregarDados(String arquivo) {
+        try (BufferedReader leitor = Files.newBufferedReader(
+                Path.of(arquivo))) {
 
+            String linha;
+
+            while ((linha = leitor.readLine()) != null) {
+                String[] dados = linha.split(";");
+
+                int id = Integer.parseInt(dados[0]);
+                String descricao = dados[1];
+                double valor = Double.parseDouble(dados[2]);
+
+                Servico servico = new Servico(id, descricao, valor);
+                adicionar(servico);
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(
+                    "Erro ao carregar os serviços.", e
+            );
+        }
     }
 }
