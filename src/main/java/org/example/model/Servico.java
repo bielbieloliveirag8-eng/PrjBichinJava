@@ -7,9 +7,7 @@ public class Servico {
     private int id;
     private double valor;
 
-    public Servico() {
-
-    }
+    public Servico() {}
 
     public Servico(int id, String descricao, double valor) {
         this.id = id;

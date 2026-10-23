@@ -1,7 +1,7 @@
 package org.example.model;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+import java.time.Period;
 import java.util.Objects;
 
 public class ServicoPrestado {
@@ -11,9 +11,7 @@ public class ServicoPrestado {
     private double valorCobrado;
     private Pet pet;
 
-    public ServicoPrestado() {
-
-    }
+    public ServicoPrestado() {}
 
     public ServicoPrestado(int id, Pet pet, Servico servico, double valorCobrado, LocalDate data) {
         this.id = id;
@@ -67,9 +65,8 @@ public class ServicoPrestado {
         if (this.data == null) {
             return 0;
         }
-        return (int) ChronoUnit.DAYS.between(this.data, LocalDate.now());
+        return Period.between(this.data, LocalDate.now()).getDays();
     }
-
 
     @Override
     public boolean equals(Object o) {
