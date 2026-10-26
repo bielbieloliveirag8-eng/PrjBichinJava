@@ -28,7 +28,11 @@ public class ServicoPrestadoRepository {
         try (BufferedReader leitor = Files.newBufferedReader(
                 Path.of(arquivo))) {
 
-            String linha;
+            String linha = leitor.readLine();
+            //Verifica se a linha é o cabeçalho, se não pode ler as próximas linhas que contém os dados
+            if (linha != null && linha.contains("id;idServico;data;valorCobrado;idPet")) {
+                linha = leitor.readLine();
+            }
 
             while ((linha = leitor.readLine()) != null) {
                 String[] dados = linha.split(";");

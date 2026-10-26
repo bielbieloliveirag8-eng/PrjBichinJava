@@ -51,7 +51,11 @@ public class ServicoRepository {
         try (BufferedReader leitor = Files.newBufferedReader(
                 Path.of(arquivo))) {
 
-            String linha;
+            String linha = leitor.readLine();
+            //Verifica se a linha é o cabeçalho, se não pode ler as próximas linhas que contém os dados
+            if (linha != null && linha.contains("id;descricao;valor")) {
+                linha = leitor.readLine();
+            }
 
             while ((linha = leitor.readLine()) != null) {
                 String[] dados = linha.split(";");
