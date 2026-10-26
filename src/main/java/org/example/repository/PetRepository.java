@@ -2,7 +2,6 @@ package org.example.repository;
 
 import org.example.model.Cliente;
 import org.example.model.Pet;
-import org.example.model.Servico;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -67,7 +66,7 @@ public class PetRepository {
 
                 int id = Integer.parseInt(dados[0]);
                 String nome = dados[1];
-                String especie = dados[2];
+                String especie =dados[2];
                 String raca = dados[3];
                 int clienteId = Integer.parseInt(dados[4]);
 
