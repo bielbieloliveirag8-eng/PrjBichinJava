@@ -20,11 +20,10 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", telefone='" + telefone + '\'' +
-                '}';
+        return "ID: " + id + "\n" +
+                "Nome: " + nome + "\n" +
+                "Telefone: " + telefone+"\n"+
+                "-----------------------------";
     }
 
     public int getId() {

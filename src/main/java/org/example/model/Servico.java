@@ -41,11 +41,10 @@ public class Servico {
 
     @Override
     public String toString() {
-        return "Servico{" +
-                "descricao='" + descricao + '\'' +
-                ", id=" + id +
-                ", valor=" + valor +
-                '}';
+        return "ID: " + id + "\n" +
+                "Descrição: " + descricao + "\n" +
+                "Valor: R$ " + valor + "\n" +
+                "-----------------------------------------";
     }
 
     @Override

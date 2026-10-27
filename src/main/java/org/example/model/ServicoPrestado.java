@@ -82,13 +82,11 @@ public class ServicoPrestado {
 
     @Override
     public String toString() {
-        return "ServicoPrestado{" +
-                "id=" + id +
-                ", servico=" + servico +
-                ", data=" + data +
-                ", valorCobrado=" + valorCobrado +
-                ", pet=" + pet +
-                '}';
+        return "ID: " + id + "\n" +
+                "Serviço: " + servico.getDescricao() + "\n" +
+                "Data: " + data + "\n" +
+                "Valor cobrado: R$ " + valorCobrado + "\n" +
+                "Pet: " + pet ;
     }
 
 }

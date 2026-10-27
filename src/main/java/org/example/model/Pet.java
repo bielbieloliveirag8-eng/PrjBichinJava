@@ -82,14 +82,13 @@ public class Pet {
 
     @Override
     public String toString() {
-        return "Pet{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", especie='" + especie + '\'' +
-                ", raca='" + raca + '\'' +
-                ", cliente=" + cliente +
-                ", nascimento=" + nascimento +
-                '}';
+        return "ID: " + id + "\n" +
+                "Nome: " + nome + "\n" +
+                "Espécie: " + especie + "\n" +
+                "Raça: " + raca + "\n" +
+                "Cliente: " + cliente.getNome() + "\n" +
+                "Nascimento: " + nascimento + "\n" +
+                "------------------------------------------";
     }
 
     @Override
