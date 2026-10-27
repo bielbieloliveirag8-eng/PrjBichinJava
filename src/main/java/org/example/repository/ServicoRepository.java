@@ -57,7 +57,7 @@ public class ServicoRepository {
                 linha = leitor.readLine();
             }
 
-            while ((linha = leitor.readLine()) != null) {
+            while (linha != null) {
                 String[] dados = linha.split(";");
 
                 int id = Integer.parseInt(dados[0]);
@@ -66,6 +66,8 @@ public class ServicoRepository {
 
                 Servico servico = new Servico(id, descricao, valor);
                 adicionar(servico);
+
+                linha = leitor.readLine();
             }
 
         } catch (IOException e) {

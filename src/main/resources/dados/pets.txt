@@ -1,0 +1,7 @@
+id;nome;especie;raca;clienteId;nascimento
+1;Rex;CÃO;Labrador;1;12/03/2020
+2;Mimi;GATO;Siamês;2;05/07/2022
+3;Pipoca;CÃO;Poodle;1;21/11/2019
+4;Luna;PÁSSARO;Calopsita;3;14/02/2023
+5;Nemo;PEIXE;Betta;4;30/08/2024
+6;Thor;CÃO;Golden Retriever;5;09/09/2021

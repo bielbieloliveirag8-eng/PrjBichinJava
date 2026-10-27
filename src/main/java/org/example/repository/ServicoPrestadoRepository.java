@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,12 +35,12 @@ public class ServicoPrestadoRepository {
                 linha = leitor.readLine();
             }
 
-            while ((linha = leitor.readLine()) != null) {
+            while (linha != null) {
                 String[] dados = linha.split(";");
 
                 int id = Integer.parseInt(dados[0]);
                 int idServico = Integer.parseInt(dados[1]);
-                LocalDate data = LocalDate.parse(dados[2]);
+                LocalDate data = LocalDate.parse(dados[2], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                 double valorCobrado = Double.parseDouble(dados[3]);
                 int idPet = Integer.parseInt(dados[4]);
 
@@ -48,6 +49,8 @@ public class ServicoPrestadoRepository {
 
                 ServicoPrestado servicoPrestado = new ServicoPrestado(id, pet, servico, valorCobrado, data);
                 adicionar(servicoPrestado);
+
+                linha = leitor.readLine();
             }
 
         } catch (IOException e) {

@@ -1,0 +1,7 @@
+id;descricao;valor
+1;Banho;45.00
+2;Tosa;60.00
+3;Banho e tosa;90.00
+4;Consulta veterinária;120.00
+5;Corte de unhas;25.00
+6;Higienização de ouvido;30.00

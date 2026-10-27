@@ -1,6 +1,7 @@
 package org.example.visao.cmd;
 
 import org.example.controller.ClienteController;
+import org.example.controller.ServicoController;
 import org.example.controller.ServicoPrestadoController;
 import org.example.model.Pet;
 import org.example.model.ServicoPrestado;
@@ -12,12 +13,14 @@ import java.util.Scanner;
 public class UiCmdServicoPrestado {
     private ClienteController controllerCliente;
     private ServicoPrestadoController controller;
+    private ServicoController controllerServico;
     private Scanner teclado;
 
-    public UiCmdServicoPrestado(ServicoPrestadoController controller, ClienteController controllerCliente) {
+    public UiCmdServicoPrestado(ServicoPrestadoController controller, ClienteController controllerCliente, ServicoController controllerServico) {
         this.teclado = new Scanner(System.in);
         this.controllerCliente = controllerCliente;
         this.controller = controller;
+        this.controllerServico = controllerServico;
     }
 
     public void iniciar() {
@@ -132,11 +135,13 @@ public class UiCmdServicoPrestado {
             return;
         }
 
+        System.out.print("ID do Pet: ");
+        int idPet = teclado.nextInt();
+
+        System.out.println(controllerServico.buscar(idServico));
+
         System.out.println("Valor cobrado: ");
         double valor = teclado.nextDouble();
-
-        System.out.print("ID do Servico: ");
-        int idPet = teclado.nextInt();
         teclado.nextLine();
 
         controller.adicionar(idPrestado, idPet, idServico, valor, data);

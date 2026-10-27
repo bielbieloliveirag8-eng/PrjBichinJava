@@ -1,0 +1,6 @@
+id;nome;telefone
+1;Ana Souza;(37) 99999-1001
+2;Bruno Lima;(37) 98888-2002
+3;Carla Mendes;(37) 97777-3003
+4;Diego Alves;(37) 96666-4004
+5;Elisa Rocha;(37) 95555-5005
