@@ -24,8 +24,7 @@ public class UiCmdServico {
             System.out.println("1 - Adicionar Servico");
             System.out.println("2 - Listar Servico");
             System.out.println("3 - Buscar Servico por ID");
-            System.out.println("4 - Alterar Servico");
-            System.out.println("5 - Apagar Servico");
+            System.out.println("4 - Apagar Servico");
             System.out.println("0 - Voltar ao Menu Principal");
             System.out.println("========================");
             System.out.print("Escolha uma opção: ");
@@ -47,10 +46,6 @@ public class UiCmdServico {
                     break;
 
                 case 4:
-                    alterar();
-                    break;
-
-                case 5:
                     apagar();
                     break;
 
@@ -65,12 +60,8 @@ public class UiCmdServico {
         } while (opcao != 0);
     }
 
-    private void alterar(){
-        //sa
-    }
-
     private void listar(){
-        System.out.println("\n--- Lista de Servicos ---");
+        System.out.println("\n--- Listar Servicos ---");
 
         for (Servico servico : controller.listar()) {
             System.out.println(servico);
@@ -82,12 +73,14 @@ public class UiCmdServico {
 
         System.out.print("ID do Servico: ");
         int id = teclado.nextInt();
+        teclado.nextLine();
 
         System.out.println("Descricao: ");
         String descricao = teclado.nextLine();
 
         System.out.println("Valor: ");
         double valor = teclado.nextDouble();
+        teclado.nextLine();
 
         controller.adicionar(id, descricao, valor);
 
