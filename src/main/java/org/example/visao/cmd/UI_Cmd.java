@@ -5,16 +5,16 @@ import java.util.Scanner;
 public class UI_Cmd {
 
     private Scanner teclado;
-    // private UiCmdCliente uiCmdCliente;
+    private UiCmdCliente uiCmdCliente;
     private UiCmdPet uiCmdPet;
     private UiCmdServico uiCmdServico;
     private UiCmdServicoPrestado menuServicoPrestado;
 
-    public UI_Cmd(/*UiCmdCliente uiCmdCliente,*/ UiCmdPet uiCmdPet, UiCmdServico uiCmdServico,
+    public UI_Cmd(UiCmdCliente uiCmdCliente, UiCmdPet uiCmdPet, UiCmdServico uiCmdServico,
                                                  UiCmdServicoPrestado menuServicoPrestado) {
 
         teclado = new Scanner(System.in);
-//this.uiCmdCliente = uiCmdCliente;
+        this.uiCmdCliente = uiCmdCliente;
         this.uiCmdPet = uiCmdPet;
         this.uiCmdServico = uiCmdServico;
         this.menuServicoPrestado = menuServicoPrestado;
@@ -40,7 +40,7 @@ public class UI_Cmd {
 
             switch (opcao) {
                 case 1:
-                    //uiCmdCliente.iniciar();
+                    uiCmdCliente.iniciar();
                     break;
 
                 case 2:

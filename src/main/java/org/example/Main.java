@@ -30,8 +30,11 @@ public class Main {
         UiCmdPet uiCmdPet = new UiCmdPet(petController, clienteController);
         UiCmdServico uiCmdServico = new UiCmdServico(servicoController);
         UiCmdServicoPrestado uiCmdServicoPrestado = new UiCmdServicoPrestado(servicoPrestadoController, clienteController, servicoController);
+        UiCmdCliente uiCmdCliente = new UiCmdCliente(clienteController);
+
 
         UI_Cmd menu = new UI_Cmd(
+                uiCmdCliente,
                 uiCmdPet,
                 uiCmdServico,
                 uiCmdServicoPrestado

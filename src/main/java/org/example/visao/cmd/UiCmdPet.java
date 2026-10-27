@@ -31,8 +31,7 @@ public class UiCmdPet {
             System.out.println("1 - Adicionar Pet");
             System.out.println("2 - Listar Pets");
             System.out.println("3 - Buscar Pet por ID");
-            System.out.println("4 - Alterar Pet");
-            System.out.println("5 - Apagar Pet");
+            System.out.println("4 - Apagar Pet");
             System.out.println("0 - Voltar ao Menu Principal");
             System.out.println("========================");
             System.out.print("Escolha uma opção: ");
@@ -52,12 +51,7 @@ public class UiCmdPet {
                 case 3:
                     buscar();
                     break;
-
                 case 4:
-                    alterar();
-                    break;
-
-                case 5:
                     apagar();
                     break;
 
@@ -130,6 +124,7 @@ public class UiCmdPet {
     }
 
     private void buscar() {
+        System.out.println("\n--- Buscar Pets ---");
         System.out.print("Digite o ID do Pet: ");
         int id = teclado.nextInt();
         teclado.nextLine();
@@ -143,13 +138,8 @@ public class UiCmdPet {
         }
     }
 
-    private void alterar() {
-        System.out.println(
-                "A função de alteração ainda não foi implementada."
-        );
-    }
-
     private void apagar() {
+        System.out.println("\n--- Apagar Pets ---");
         System.out.print("Digite o ID do Pet a remover: ");
         int id = teclado.nextInt();
         teclado.nextLine();
