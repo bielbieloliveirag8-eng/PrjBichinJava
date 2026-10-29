@@ -2,6 +2,7 @@ package org.example.model;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Pet {
@@ -82,12 +83,13 @@ public class Pet {
 
     @Override
     public String toString() {
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return "ID: " + id + "\n" +
                 "Nome: " + nome + "\n" +
                 "Espécie: " + especie + "\n" +
                 "Raça: " + raca + "\n" +
                 "Cliente: " + cliente.getNome() + "\n" +
-                "Nascimento: " + nascimento + "\n" +
+                "Nascimento: " + nascimento.format(formato) + "\n" +
                 "------------------------------------------";
     }
 

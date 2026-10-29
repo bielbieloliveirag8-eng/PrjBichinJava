@@ -98,13 +98,21 @@ public class ServicoPrestadoRepository {
         return false;
     }
 
-    public List<Pet> buscarBichosPorNomeDono(String nomeDono){
+    public List<Pet> buscarBichosPorNomeDono(String nomeDono) {
         List<Pet> listagem = new ArrayList<>();
 
-        for (int i = 0; i < servicosPrestados.size(); i++) {
-            if (servicosPrestados.get(i) != null){
-                if (servicosPrestados.get(i).getPet().getCliente().getNome().equals(nomeDono)){
-                    listagem.add(servicosPrestados.get(i).getPet());
+        for (ServicoPrestado servico : servicosPrestados) {
+            if (servico != null && servico.getPet() != null) {
+                Cliente cliente = servico.getPet().getCliente();
+
+                if (cliente != null
+                        && cliente.getNome().equalsIgnoreCase(nomeDono)) {
+
+                    Pet pet = servico.getPet();
+
+                    if (!listagem.contains(pet)) {
+                        listagem.add(pet);
+                    }
                 }
             }
         }
@@ -132,8 +140,10 @@ public class ServicoPrestadoRepository {
         List<ServicoPrestado> servicosCliente = buscarPorCliente(cliente);
 
         for (int i = 0; i < servicosCliente.size(); i++) {
-            if (servicosPrestados.get(i).getValorCobrado() > maiorValor)
-                maiorValor = servicosPrestados.get(i).getValorCobrado();
+            if (servicosPrestados.get(i).getPet().getCliente().equals(cliente)){
+                if (servicosPrestados.get(i).getValorCobrado() > maiorValor)
+                    maiorValor = servicosPrestados.get(i).getValorCobrado();
+            }
         }
 
         return maiorValor;

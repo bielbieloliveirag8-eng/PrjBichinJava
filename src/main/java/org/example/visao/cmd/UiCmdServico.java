@@ -75,10 +75,10 @@ public class UiCmdServico {
         int id = teclado.nextInt();
         teclado.nextLine();
 
-        System.out.println("Descricao: ");
+        System.out.print("Descricao: ");
         String descricao = teclado.nextLine();
 
-        System.out.println("Valor: ");
+        System.out.print("Valor: ");
         double valor = teclado.nextDouble();
         teclado.nextLine();
 

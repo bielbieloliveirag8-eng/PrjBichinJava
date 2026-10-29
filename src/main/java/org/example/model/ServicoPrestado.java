@@ -2,6 +2,7 @@ package org.example.model;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class ServicoPrestado {
@@ -82,9 +83,10 @@ public class ServicoPrestado {
 
     @Override
     public String toString() {
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return "ID: " + id + "\n" +
                 "Serviço: " + servico.getDescricao() + "\n" +
-                "Data: " + data + "\n" +
+                "Data: " + data.format(formato) + "\n" +
                 "Valor cobrado: R$ " + valorCobrado + "\n" +
                 "Pet: " + pet ;
     }

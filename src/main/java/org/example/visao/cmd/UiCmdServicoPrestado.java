@@ -92,7 +92,7 @@ public class UiCmdServicoPrestado {
     private void servicosPorPeriodo(){
         System.out.println("\n--- Listar Servicos Por Periodo ---");
 
-        System.out.printf("Data inicial: ");
+        System.out.print("Data inicial: ");
         LocalDate dataInicial;
         try {
             dataInicial = LocalDate.parse(teclado.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -101,7 +101,7 @@ public class UiCmdServicoPrestado {
             return;
         }
 
-        System.out.printf("Data final: ");
+        System.out.print("Data final: ");
         LocalDate dataFinal;
         try {
             dataFinal = LocalDate.parse(teclado.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -126,7 +126,7 @@ public class UiCmdServicoPrestado {
         int idServico = teclado.nextInt();
         teclado.nextLine();
 
-        System.out.printf("Data: ");
+        System.out.print("Data: ");
         LocalDate data;
         try {
             data = LocalDate.parse(teclado.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -140,7 +140,7 @@ public class UiCmdServicoPrestado {
 
         System.out.println(controllerServico.buscar(idServico));
 
-        System.out.println("Valor cobrado: ");
+        System.out.print("Valor cobrado: ");
         double valor = teclado.nextDouble();
         teclado.nextLine();
 
