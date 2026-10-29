@@ -7,6 +7,7 @@ import org.example.model.Pet;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class UiCmdPet {
@@ -25,7 +26,7 @@ public class UiCmdPet {
         int opcao;
 
         do {
-            System.out.println("\n========================");
+            System.out.println("========================");
             System.out.println("      GESTÃO DE PETS");
             System.out.println("========================");
             System.out.println("1 - Adicionar Pet");
@@ -43,22 +44,18 @@ public class UiCmdPet {
                 case 1:
                     adicionar();
                     break;
-
                 case 2:
                     listar();
                     break;
-
                 case 3:
                     buscar();
                     break;
                 case 4:
                     apagar();
                     break;
-
                 case 0:
                     System.out.println("Voltando ao menu principal...");
                     break;
-
                 default:
                     System.out.println("Opção inválida!");
             }
@@ -68,6 +65,26 @@ public class UiCmdPet {
 
     private void adicionar() {
         System.out.println("\n--- Adicionar Pet ---");
+
+        System.out.print("Digite o ID do dono do pet: ");
+        int idCliente = teclado.nextInt();
+        teclado.nextLine();
+
+        Cliente cliente = controllerCliente.buscar(idCliente);
+
+        if (cliente == null) {
+            System.out.println("Cliente não encontrado!");
+
+            System.out.print("Nome do cliente: ");
+            String nomeCliente = teclado.nextLine();
+
+            String telefoneCliente = lerTelefone("Telefone do cliente (formato (99) 99999-9999): ");
+
+            controllerCliente.adicionar(idCliente, nomeCliente, telefoneCliente);
+
+            cliente = controllerCliente.buscar(idCliente);
+            System.out.println("Cliente cadastrado e associado com sucesso!");
+        }
 
         System.out.print("ID do Pet: ");
         int id = teclado.nextInt();
@@ -82,31 +99,7 @@ public class UiCmdPet {
         System.out.print("Raça do Pet: ");
         String raca = teclado.nextLine();
 
-        System.out.print("Data de nascimento (dd/MM/yyyy): ");
-        String dataTexto = teclado.nextLine();
-
-        LocalDate nascimento;
-
-        try {
-            nascimento = LocalDate.parse(
-                    dataTexto,
-                    DateTimeFormatter.ofPattern("dd/MM/yyyy")
-            );
-        } catch (java.time.format.DateTimeParseException e) {
-            System.out.println("Data inválida!");
-            return;
-        }
-
-        System.out.print("ID do Cliente responsável: ");
-        int idCliente = teclado.nextInt();
-        teclado.nextLine();
-
-        Cliente cliente = controllerCliente.buscar(idCliente);
-
-        if (cliente == null) {
-            System.out.println("Cliente não encontrado.");
-            return;
-        }
+        LocalDate nascimento = lerData("Data de nascimento (dd/MM/yyyy): ");
 
         controller.adicionar(
                 id, nome, especie, raca, nascimento, cliente.getId()
@@ -148,6 +141,31 @@ public class UiCmdPet {
             System.out.println("Pet removido com sucesso!");
         } else {
             System.out.println("Pet não encontrado.");
+        }
+    }
+
+    private String lerTelefone(String mensagem) {
+        String regex = "\\(\\d{2}\\) \\d{5}-\\d{4}";
+        while (true) {
+            System.out.print(mensagem);
+            String telefone = teclado.nextLine();
+            if (telefone.matches(regex)) {
+                return telefone;
+            }
+            System.out.println("Formato inválido! Use o padrão (99) 99999-9999.");
+        }
+    }
+
+    private LocalDate lerData(String mensagem) {
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        while (true) {
+            System.out.print(mensagem);
+            String entrada = teclado.nextLine();
+            try {
+                return LocalDate.parse(entrada, formato);
+            } catch (DateTimeParseException e) {
+                System.out.println("Data inválida ou fora do padrão dd/MM/yyyy. Tente novamente!");
+            }
         }
     }
 }
