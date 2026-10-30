@@ -32,7 +32,6 @@ public class Main {
         UiCmdServicoPrestado uiCmdServicoPrestado = new UiCmdServicoPrestado(servicoPrestadoController, clienteController, servicoController);
         UiCmdCliente uiCmdCliente = new UiCmdCliente(clienteController);
 
-
         UI_Cmd menu = new UI_Cmd(
                 uiCmdCliente,
                 uiCmdPet,

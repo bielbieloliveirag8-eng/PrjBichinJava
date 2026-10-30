@@ -6,20 +6,25 @@ import org.example.model.Servico;
 import java.util.ArrayList;
 
 public class ClienteRepository {
+    // Lista de clientes
     private  ArrayList<Cliente> clientes;
 
+    // Instância a lista de clientes
     public ClienteRepository() {
         this.clientes = new ArrayList<>();
     }
 
+    // Adiciona cliente na lista
     public void adicionar(Cliente cliente) {
+
         this.clientes.add(cliente);
     }
 
+    // Retorna tds os clientes
     public ArrayList<Cliente> listar() {
         return this.clientes;
     }
-
+    // Busca o cliente pelo ID
     public  Cliente buscarPorId(int id) {
         for (int i = 0; i < clientes.size(); i++) {
             if (clientes.get(i).getId() == id) {
@@ -29,7 +34,7 @@ public class ClienteRepository {
         }
         return null;
     }
-
+    // Remove o cliente pelo ID escolhido
     public boolean remover(int id) {
 
         Cliente cliente = buscarPorId(id);
@@ -41,7 +46,7 @@ public class ClienteRepository {
 
         return false;
     }
-
+    // Carrega os clientes do arquivo
     public void carregarDados(String Arquivo) {
         try (java.io.BufferedReader leitor = java.nio.file.Files.newBufferedReader(
                 java.nio.file.Path.of(Arquivo))) {

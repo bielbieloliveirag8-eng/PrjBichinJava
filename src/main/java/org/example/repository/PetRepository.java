@@ -12,20 +12,25 @@ import java.util.ArrayList;
 
 public class PetRepository {
 
+    // Lista de pets
     private ArrayList<Pet> pets;
 
+    // Instância lista de pets
     public PetRepository() {
         this.pets = new ArrayList<>();
     }
 
+    // Lista td os pets
     public ArrayList<Pet> listar() {
         return this.pets;
     }
 
+    // Adiciona um pet a lista
     public void adicionar(Pet pet) {
         this.pets.add(pet);
     }
 
+    // Busca pet pelo ID
     public Pet buscarPorId(int id) {
         for (int i = 0; i < pets.size(); i++) {
             if (this.pets.get(i).getId() == id) {
@@ -36,6 +41,7 @@ public class PetRepository {
         return null;
     }
 
+    // Remove pet pelo ID escolhido
     public boolean remover(int id) {
 
         Pet pet = buscarPorId(id);
@@ -48,6 +54,7 @@ public class PetRepository {
         return false;
     }
 
+    // Carrega os pets do arquivo
     public void carregarDados(String arquivo, ClienteRepository clienteRepository) {
         try (BufferedReader leitor = Files.newBufferedReader(
                 Path.of(arquivo))) {

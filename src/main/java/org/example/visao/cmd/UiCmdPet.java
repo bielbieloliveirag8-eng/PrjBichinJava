@@ -127,7 +127,7 @@ public class UiCmdPet {
         if (pet != null) {
             System.out.println(pet);
         } else {
-            System.out.println("Pet não encontrado.");
+            System.out.println("Pet não encontrado!");
         }
     }
 
@@ -140,7 +140,7 @@ public class UiCmdPet {
         if (controller.remover(id)) {
             System.out.println("Pet removido com sucesso!");
         } else {
-            System.out.println("Pet não encontrado.");
+            System.out.println("Pet não encontrado!");
         }
     }
 

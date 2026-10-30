@@ -10,12 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ServicoRepository {
+
+    // Lista de serviços
     private List<Servico> servicos;
 
+    // Instância a lsita de serviços
     public ServicoRepository() {
         this.servicos = new ArrayList<>();
     }
 
+    // Busca serviço pelo ID
     public Servico buscarPorId(int id) {
         for (int i = 0; i < servicos.size(); i++) {
             if (servicos.get(i) != null) {
@@ -28,14 +32,17 @@ public class ServicoRepository {
         return null;
     }
 
+    // Retorna lista com tds os serviços
     public List<Servico> listar() {
         return servicos;
     }
 
+    // Adiciona serviço na lista
     public void adicionar(Servico servico) {
         servicos.add(servico);
     }
 
+    // Remove serviço pelo ID escolhido
     public boolean remover(int id) {
         Servico servico = buscarPorId(id);
 
@@ -47,6 +54,7 @@ public class ServicoRepository {
         return false;
     }
 
+    // Carrega  serviços do arquivo
     public void carregarDados(String arquivo) {
         try (BufferedReader leitor = Files.newBufferedReader(
                 Path.of(arquivo))) {
