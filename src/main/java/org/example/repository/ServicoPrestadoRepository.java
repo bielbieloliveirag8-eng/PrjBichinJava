@@ -21,11 +21,11 @@ public class ServicoPrestadoRepository {
         this.servicosPrestados = new ArrayList<>();
     }
 
-    public List<ServicoPrestado> listar(){
+    public List<ServicoPrestado> listar() {
         return servicosPrestados;
     }
 
-    public void carregarDados(String arquivo, PetRepository petRepository, ServicoRepository servicoRepository){
+    public void carregarDados(String arquivo, PetRepository petRepository, ServicoRepository servicoRepository) {
         try (BufferedReader leitor = Files.newBufferedReader(
                 Path.of(arquivo))) {
 
@@ -60,13 +60,13 @@ public class ServicoPrestadoRepository {
         }
     }
 
-    public List<ServicoPrestado> buscarPorPeriodo(LocalDate dataInicial, LocalDate dataFinal){
+    public List<ServicoPrestado> buscarPorPeriodo(LocalDate dataInicial, LocalDate dataFinal) {
         List<ServicoPrestado> listagem = new ArrayList<>();
 
         for (int i = 0; i < servicosPrestados.size(); i++) {
-            if (servicosPrestados.get(i) != null){
+            if (servicosPrestados.get(i) != null) {
                 if (!servicosPrestados.get(i).getData().isBefore(dataInicial)
-                && !servicosPrestados.get(i).getData().isAfter(dataFinal)){
+                        && !servicosPrestados.get(i).getData().isAfter(dataFinal)) {
                     listagem.add(servicosPrestados.get(i));
                 }
             }
@@ -75,7 +75,7 @@ public class ServicoPrestadoRepository {
         return listagem;
     }
 
-    public ServicoPrestado buscarPorId(int id){
+    public ServicoPrestado buscarPorId(int id) {
         for (int i = 0; i < servicosPrestados.size(); i++) {
             if (servicosPrestados.get(i) != null) {
                 if (servicosPrestados.get(i).getId() == id) {
@@ -87,7 +87,7 @@ public class ServicoPrestadoRepository {
         return null;
     }
 
-    public boolean remover(int id){
+    public boolean remover(int id) {
         ServicoPrestado servicoPrestado = buscarPorId(id);
 
         if (servicoPrestado != null) {
@@ -98,12 +98,12 @@ public class ServicoPrestadoRepository {
         return false;
     }
 
-    public List<Pet> buscarBichosPorNomeDono(String nomeDono){
+    public List<Pet> buscarBichosPorNomeDono(String nomeDono) {
         List<Pet> listagem = new ArrayList<>();
 
         for (int i = 0; i < servicosPrestados.size(); i++) {
-            if (servicosPrestados.get(i) != null){
-                if (servicosPrestados.get(i).getPet().getCliente().getNome().equals(nomeDono)){
+            if (servicosPrestados.get(i) != null) {
+                if (servicosPrestados.get(i).getPet().getCliente().getNome().equals(nomeDono)) {
                     listagem.add(servicosPrestados.get(i).getPet());
                 }
             }
@@ -112,12 +112,12 @@ public class ServicoPrestadoRepository {
         return listagem;
     }
 
-    public List<ServicoPrestado> buscarPorCliente(Cliente cliente){
+    public List<ServicoPrestado> buscarPorCliente(Cliente cliente) {
         List<ServicoPrestado> listagem = new ArrayList<>();
 
         for (int i = 0; i < servicosPrestados.size(); i++) {
-            if (servicosPrestados.get(i) != null){
-                if (servicosPrestados.get(i).getPet().getCliente().equals(cliente)){
+            if (servicosPrestados.get(i) != null) {
+                if (servicosPrestados.get(i).getPet().getCliente().equals(cliente)) {
                     listagem.add(servicosPrestados.get(i));
                 }
             }
@@ -126,7 +126,7 @@ public class ServicoPrestadoRepository {
         return listagem;
     }
 
-    public double maiorValorPorCliente(Cliente cliente){
+    public double maiorValorPorCliente(Cliente cliente) {
         double maiorValor = 0;
 
         List<ServicoPrestado> servicosCliente = buscarPorCliente(cliente);
@@ -139,7 +139,7 @@ public class ServicoPrestadoRepository {
         return maiorValor;
     }
 
-    public void adicionar(ServicoPrestado servicoPrestado){
+    public void adicionar(ServicoPrestado servicoPrestado) {
         servicosPrestados.add(servicoPrestado);
     }
 }
