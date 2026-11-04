@@ -113,7 +113,9 @@ public class ServicoPrestadoRepository {
         for (int i = 0; i < servicosPrestados.size(); i++) {
             if (servicosPrestados.get(i) != null){
                 if (servicosPrestados.get(i).getPet().getCliente().getNome().equals(nomeDono)){
-                    listagem.add(servicosPrestados.get(i).getPet());
+                    if (!listagem.contains(servicosPrestados.get(i).getPet())) {
+                        listagem.add(servicosPrestados.get(i).getPet());
+                    }
                 }
             }
         }
@@ -143,8 +145,8 @@ public class ServicoPrestadoRepository {
         List<ServicoPrestado> servicosCliente = buscarPorCliente(cliente);
 
         for (int i = 0; i < servicosCliente.size(); i++) {
-            if (servicosPrestados.get(i).getValorCobrado() > maiorValor)
-                maiorValor = servicosPrestados.get(i).getValorCobrado();
+            if (servicosCliente.get(i).getValorCobrado() > maiorValor)
+                maiorValor = servicosCliente.get(i).getValorCobrado();
         }
 
         return maiorValor;
