@@ -87,8 +87,9 @@ public class ServicoPrestado {
         return "ID: " + id + "\n" +
                 "Serviço: " + servico.getDescricao() + "\n" +
                 "Data: " + data.format(formato) + "\n" +
-                "Valor cobrado: R$ " + valorCobrado + "\n" +
-                "Pet: " + pet ;
+                "Valor cobrado: R$" + valorCobrado + "\n" +
+                "Pet: " + pet + "\n" +
+                "-----------------------------";
     }
 
 }

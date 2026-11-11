@@ -1,6 +1,8 @@
 package org.example.repository;
 
 import org.example.model.Servico;
+import org.example.model.ServicoExterno;
+import org.example.model.ServicoInterno;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -71,8 +73,15 @@ public class ServicoRepository {
                 int id = Integer.parseInt(dados[0]);
                 String descricao = dados[1];
                 double valor = Double.parseDouble(dados[2]);
+                String crmv = dados[3];
+                double valorTerceirizado = Double.parseDouble(dados[4]);
 
-                Servico servico = new Servico(id, descricao, valor);
+                Servico servico;
+                if (crmv == null || crmv.isBlank())
+                    servico = new ServicoExterno(id, descricao, valor, valorTerceirizado);
+                else
+                    servico = new ServicoInterno(id, descricao, valor, crmv);
+
                 adicionar(servico);
 
                 linha = leitor.readLine();

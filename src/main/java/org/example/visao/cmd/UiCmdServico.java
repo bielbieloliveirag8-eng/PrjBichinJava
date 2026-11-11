@@ -82,7 +82,22 @@ public class UiCmdServico {
         double valor = teclado.nextDouble();
         teclado.nextLine();
 
-        controller.adicionar(id, descricao, valor);
+        System.out.print("Qual o tipo de serviço (1-interno ou 2-externo): ");
+        int tipo = teclado.nextInt();
+        teclado.nextLine();
+
+        String crmv = null;
+        double valorTerceirizado = 0;
+        if (tipo == 1){
+            System.out.println("CRMV do responsável pelo serviço: ");
+            crmv = teclado.nextLine();
+        }
+        else{
+            System.out.println("Valor do serviço terceirizado: ");
+            valorTerceirizado = teclado.nextDouble();
+        }
+
+        controller.adicionar(id, descricao, valor, crmv, valorTerceirizado);
 
         System.out.println("Servico adicionado com sucesso!");
     }

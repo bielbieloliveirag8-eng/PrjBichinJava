@@ -2,7 +2,7 @@ package org.example.model;
 
 import java.util.Objects;
 
-public class Servico {
+public abstract class Servico {
     private String descricao;
     private int id;
     private double valor;
@@ -39,12 +39,13 @@ public class Servico {
         this.valor = valor;
     }
 
+    public abstract double valorFinalDoServico();
+
     @Override
     public String toString() {
         return "ID: " + id + "\n" +
                 "Descrição: " + descricao + "\n" +
-                "Valor: R$ " + valor + "\n" +
-                "-----------------------------------------";
+                "Valor: R$ " + valor + "\n";
     }
 
     @Override
