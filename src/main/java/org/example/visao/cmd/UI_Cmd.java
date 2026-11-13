@@ -1,5 +1,7 @@
 package org.example.visao.cmd;
 
+import org.example.util.Leitura;
+
 import java.util.Scanner;
 
 public class UI_Cmd {
@@ -33,10 +35,8 @@ public class UI_Cmd {
             System.out.println("4 - Serviços Prestados");
             System.out.println("0 - Sair");
             System.out.println("========================");
-            System.out.print("Escolha uma opção: ");
 
-            opcao = teclado.nextInt();
-            teclado.nextLine();
+            opcao = Leitura.lerInteiro(teclado, "Escolha uma opção: ", true);
 
             switch (opcao) {
                 case 1:

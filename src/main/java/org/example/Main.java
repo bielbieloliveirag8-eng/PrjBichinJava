@@ -28,8 +28,6 @@ public class Main {
         ServicoPrestadoService servicoPrestadoService = new ServicoPrestadoService(servicoPrestadoRepository);
         ServicoPrestadoController servicoPrestadoController = new ServicoPrestadoController(petRepository, servicoRepository, servicoPrestadoService, servicoPrestadoRepository);
 
-
-
         UiCmdPet uiCmdPet = new UiCmdPet(petController, clienteController);
         UiCmdServico uiCmdServico = new UiCmdServico(servicoController);
         UiCmdServicoPrestado uiCmdServicoPrestado = new UiCmdServicoPrestado(servicoPrestadoController, clienteController, servicoController);

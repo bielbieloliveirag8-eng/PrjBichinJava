@@ -2,6 +2,7 @@ package org.example.visao.cmd;
 
 import org.example.controller.ServicoController;
 import org.example.model.Servico;
+import org.example.util.Leitura;
 
 import java.util.Scanner;
 
@@ -27,10 +28,8 @@ public class UiCmdServico {
             System.out.println("4 - Apagar Servico");
             System.out.println("0 - Voltar ao Menu Principal");
             System.out.println("=======================================");
-            System.out.print("Escolha uma opção: ");
 
-            opcao = teclado.nextInt();
-            teclado.nextLine();
+            opcao = Leitura.lerInteiro(teclado,"Escolha uma opção: ", true);
 
             switch (opcao) {
                 case 1:
@@ -71,30 +70,21 @@ public class UiCmdServico {
     private void adicionar(){
         System.out.println("\n--- Adicionar Servico ---");
 
-        System.out.print("ID do Servico: ");
-        int id = teclado.nextInt();
-        teclado.nextLine();
+        int id = Leitura.lerInteiro(teclado, "ID do Servico: ", true);
 
-        System.out.print("Descricao: ");
-        String descricao = teclado.nextLine();
+        String descricao = Leitura.lerString(teclado, "Descricao: ");
 
-        System.out.print("Valor: ");
-        double valor = teclado.nextDouble();
-        teclado.nextLine();
+        double valor = Leitura.lerDouble(teclado, "Valor: ", true);
 
-        System.out.print("Qual o tipo de serviço (1-interno ou 2-externo): ");
-        int tipo = teclado.nextInt();
-        teclado.nextLine();
+        int tipo = Leitura.lerInteiro(teclado, "Qual o tipo de serviço (1-interno ou 2-externo): ", true);
 
         String crmv = null;
         double valorTerceirizado = 0;
         if (tipo == 1){
-            System.out.println("CRMV do responsável pelo serviço: ");
-            crmv = teclado.nextLine();
+            crmv = Leitura.lerString(teclado, "CRMV do responsável pelo serviço: ");
         }
         else{
-            System.out.println("Valor do serviço terceirizado: ");
-            valorTerceirizado = teclado.nextDouble();
+            valorTerceirizado = Leitura.lerDouble(teclado, "Valor do serviço terceirizado: ", true);
         }
 
         controller.adicionar(id, descricao, valor, crmv, valorTerceirizado);
@@ -105,9 +95,7 @@ public class UiCmdServico {
     private void apagar(){
         System.out.println("\n--- Apagar Servico ---");
 
-        System.out.print("Digite o ID do Servico a remover: ");
-        int id = teclado.nextInt();
-        teclado.nextLine();
+        int id = Leitura.lerInteiro(teclado, "Digite o ID do Servico a remover: ", true);
 
         if (controller.remover(id)) {
             System.out.println("Servico removido com sucesso!");
@@ -119,9 +107,7 @@ public class UiCmdServico {
     private void buscar() {
         System.out.println("\n--- Buscar Servico ---");
 
-        System.out.print("Digite o ID do Servico: ");
-        int id = teclado.nextInt();
-        teclado.nextLine();
+        int id = Leitura.lerInteiro(teclado, "Digite o ID do Servico: ", true);
 
         Servico servico = controller.buscar(id);
 

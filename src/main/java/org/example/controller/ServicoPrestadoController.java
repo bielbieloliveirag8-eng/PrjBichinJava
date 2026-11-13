@@ -9,12 +9,7 @@ import org.example.repository.ServicoPrestadoRepository;
 import org.example.repository.ServicoRepository;
 import org.example.service.ServicoPrestadoService;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ServicoPrestadoController {
