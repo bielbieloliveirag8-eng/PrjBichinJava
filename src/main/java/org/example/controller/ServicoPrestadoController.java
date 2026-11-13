@@ -51,19 +51,13 @@ public class ServicoPrestadoController {
         return repository.buscarPorPeriodo(dataInicial, dataFinal);
     }
 
-    public void adicionar(int id, int idPet, int idServico, double valorCobrado, LocalDate data){
+    public void adicionar(int id, int idPet, int idServico, double valorCobrado, LocalDate data) {
         Pet pet = repositoryPet.buscarPorId(idPet);
         Servico servico = repositoryServico.buscarPorId(idServico);
 
         ServicoPrestado servicoPrestado = new ServicoPrestado(id, pet, servico, valorCobrado, data);
 
-        try {
-            service.adicionar(servicoPrestado);
-            System.out.println("Cadastrado com sucesso!");
-        } catch (IllegalArgumentException e)
-        {
-            System.out.println(e.getMessage());
-        }
+        service.adicionar(servicoPrestado);
     }
 
     public List<ServicoPrestado> buscarPorCliente(Cliente cliente){

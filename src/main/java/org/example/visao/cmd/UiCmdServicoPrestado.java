@@ -89,7 +89,7 @@ public class UiCmdServicoPrestado {
         } while (opcao != 0);
     }
 
-    private void servicosPorPeriodo(){
+    private void servicosPorPeriodo() {
         System.out.println("\n--- Listar Servicos Por Periodo ---");
 
         System.out.print("Data inicial: ");
@@ -116,7 +116,7 @@ public class UiCmdServicoPrestado {
 
     }
 
-    private void adicionar(){
+    private void adicionar() {
         System.out.println("\n--- Adicionar Servico Prestado ---");
 
         System.out.print("ID do Servico Prestado: ");
@@ -143,24 +143,28 @@ public class UiCmdServicoPrestado {
         System.out.print("Valor cobrado: ");
         double valor = teclado.nextDouble();
         teclado.nextLine();
+        try {
+            controller.adicionar(idPrestado, idPet, idServico, valor, data);
+            System.out.println("Servico Prestado adicionado com sucesso!");
 
-        controller.adicionar(idPrestado, idPet, idServico, valor, data);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
 
-        System.out.println("Servico Prestado adicionado com sucesso!");
+        }
     }
 
-    private void animaisDoDono(){
+    private void animaisDoDono() {
         System.out.println("\n--- Listar Animais do Dono ---");
 
         System.out.print("Nome do dono: ");
         String nome = teclado.nextLine();
 
-        for (Pet pet : controller.buscarBichosPorNomeDono(nome)){
+        for (Pet pet : controller.buscarBichosPorNomeDono(nome)) {
             System.out.println(pet);
         }
     }
 
-    private void apagar(){
+    private void apagar() {
         System.out.println("\n--- Apagar Servico Prestado ---");
 
         System.out.print("Digite o ID do Servico Prestado a remover: ");
@@ -174,7 +178,7 @@ public class UiCmdServicoPrestado {
         }
     }
 
-    private void maiorValor(){
+    private void maiorValor() {
         System.out.println("\n--- Listar Servico com Maior Valor do Cliente ---");
 
         System.out.print("Digite o ID do Cliente: ");
@@ -184,7 +188,7 @@ public class UiCmdServicoPrestado {
         System.out.println("Maior Valor: R$" + controller.maiorValorPorCliente(controllerCliente.buscar(id)));
     }
 
-    private void listar(){
+    private void listar() {
         System.out.println("\n--- Listar Servicos Prestados ---");
 
         for (ServicoPrestado servicoPrestado : controller.listar()) {
@@ -192,7 +196,7 @@ public class UiCmdServicoPrestado {
         }
     }
 
-    private void servicosDoCliente(){
+    private void servicosDoCliente() {
         System.out.println("\n--- Listar Servicos do Cliente ---");
 
         System.out.print("Digite o ID do Cliente: ");
@@ -204,7 +208,7 @@ public class UiCmdServicoPrestado {
         }
     }
 
-    private void buscar(){
+    private void buscar() {
         System.out.println("\n--- Buscar Servico Prestado ---");
 
         System.out.print("Digite o ID do Servico Prestado: ");

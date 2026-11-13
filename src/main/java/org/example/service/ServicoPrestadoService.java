@@ -14,16 +14,19 @@ public class ServicoPrestadoService {
         this.repository = repository;
     }
 
-    public void adicionar(ServicoPrestado servicoPrestado)
-    {
-        if (servicoPrestado.getData()!= null
-        && servicoPrestado.getData().isBefore(LocalDate.now())){
-            throw new IllegalArgumentException("Não é permitido cadastrar um serviço prestado com data no passado!");
+    public void adicionar(ServicoPrestado servicoPrestado) {
+        List<String> erros = new ArrayList<>();
+
+        if (servicoPrestado.getData().isBefore(LocalDate.now())) {
+            erros.add("Não é permitido datas passadas!");
         }
 
-        if (servicoPrestado.getValorCobrado()<0)
-        {
-            throw new IllegalArgumentException("Não é permitido valor negativo!");
+        if (servicoPrestado.getValorCobrado() <= 0) {
+            erros.add("Não é permitido valor negativo!");
+        }
+
+        if (!erros.isEmpty()) {
+            throw new IllegalArgumentException(String.join("\n", erros));
         }
 
         repository.adicionar(servicoPrestado);

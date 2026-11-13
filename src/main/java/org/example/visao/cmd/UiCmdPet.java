@@ -3,6 +3,7 @@ package org.example.visao.cmd;
 import org.example.controller.ClienteController;
 import org.example.controller.PetController;
 import org.example.model.Cliente;
+import org.example.model.Especie;
 import org.example.model.Pet;
 
 import java.time.LocalDate;
@@ -93,8 +94,18 @@ public class UiCmdPet {
         System.out.print("Nome do Pet: ");
         String nome = teclado.nextLine();
 
-        System.out.print("Espécie do Pet: ");
-        String especie = teclado.nextLine();
+        Especie especie = null;
+
+        while (especie == null) {
+            System.out.print("Espécie do Pet (CAO, GATO, PASSARO, PEIXE):");
+
+            try {
+                especie = Especie.valueOf(teclado.nextLine().toUpperCase());
+            } catch (IllegalArgumentException e) {
+                System.out.println("Espécie inválida! Tente novamente.");
+            }
+        }
+
 
         System.out.print("Raça do Pet: ");
         String raca = teclado.nextLine();

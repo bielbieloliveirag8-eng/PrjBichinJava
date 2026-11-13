@@ -88,8 +88,8 @@ public class ServicoPrestado {
                 "Serviço: " + servico.getDescricao() + "\n" +
                 "Data: " + data.format(formato) + "\n" +
                 "Valor cobrado: R$" + valorCobrado + "\n" +
-                "Pet: " + pet + "\n" +
-                "-----------------------------";
+                "Pet: " + pet + "\n" ;
+
     }
 
 }

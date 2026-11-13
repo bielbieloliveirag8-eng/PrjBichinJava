@@ -74,12 +74,13 @@ public class ServicoRepository {
                 String descricao = dados[1];
                 double valor = Double.parseDouble(dados[2]);
                 String crmv = dados[3];
-                double valorTerceirizado = Double.parseDouble(dados[4]);
+
 
                 Servico servico;
-                if (crmv == null || crmv.isBlank())
+                if (crmv == null || crmv.isBlank()) {
+                    double valorTerceirizado = Double.parseDouble(dados[4]);
                     servico = new ServicoExterno(id, descricao, valor, valorTerceirizado);
-                else
+                } else
                     servico = new ServicoInterno(id, descricao, valor, crmv);
 
                 adicionar(servico);
