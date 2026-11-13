@@ -7,6 +7,7 @@ import org.example.model.ServicoPrestado;
 import org.example.repository.PetRepository;
 import org.example.repository.ServicoPrestadoRepository;
 import org.example.repository.ServicoRepository;
+import org.example.service.ServicoPrestadoService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,12 +21,14 @@ public class ServicoPrestadoController {
     private PetRepository repositoryPet;
     private ServicoRepository repositoryServico;
     private ServicoPrestadoRepository repository;
+    private ServicoPrestadoService service;
 
     public ServicoPrestadoController(PetRepository repositoryPet, ServicoRepository repositoryServico,
-                                     ServicoPrestadoRepository repository) {
+                                     ServicoPrestadoService service,ServicoPrestadoRepository repository) {
         this.repositoryPet = repositoryPet;
         this.repositoryServico = repositoryServico;
         this.repository = repository;
+        this.service = service;
     }
 
     public double maiorValorPorCliente(Cliente cliente){
@@ -54,7 +57,13 @@ public class ServicoPrestadoController {
 
         ServicoPrestado servicoPrestado = new ServicoPrestado(id, pet, servico, valorCobrado, data);
 
-        repository.adicionar(servicoPrestado);
+        try {
+            service.adicionar(servicoPrestado);
+            System.out.println("Cadastrado com sucesso!");
+        } catch (IllegalArgumentException e)
+        {
+            System.out.println(e.getMessage());
+        }
     }
 
     public List<ServicoPrestado> buscarPorCliente(Cliente cliente){

@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Pet {
     private int id;
     private String nome;
-    private String especie;
+    private Especie especie;
     private String raca;
     private Cliente cliente;
     private LocalDate nascimento;
@@ -17,7 +17,7 @@ public class Pet {
 
     }
 
-    public Pet(int id, String nome, String especie, String raca, LocalDate nascimento, Cliente cliente) {
+    public Pet(int id, String nome, Especie especie, String raca, LocalDate nascimento, Cliente cliente) {
         this.id = id;
         this.nome = nome;
         this.especie = especie;
@@ -42,11 +42,12 @@ public class Pet {
         this.nome = nome;
     }
 
-    public String getEspecie() {
+    public Especie getEspecie() {
         return especie;
     }
 
-    public void setEspecie(String especie) {
+    public void setEspecie(Especie especie) {
+
         this.especie = especie;
     }
 

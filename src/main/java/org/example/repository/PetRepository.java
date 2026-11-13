@@ -1,6 +1,7 @@
 package org.example.repository;
 
 import org.example.model.Cliente;
+import org.example.model.Especie;
 import org.example.model.Pet;
 
 import java.io.BufferedReader;
@@ -82,7 +83,9 @@ public class PetRepository {
                 Cliente cliente = clienteRepository.buscarPorId(clienteId);
 
                 if (cliente != null) {
-                    Pet pet = new Pet(id, nome, especie, raca, nascimento, cliente);
+
+                    Especie especieEnum = Especie.valueOf(especie.toUpperCase());
+                    Pet pet = new Pet(id, nome, especieEnum, raca, nascimento, cliente);
                     adicionar(pet);
                 }
 

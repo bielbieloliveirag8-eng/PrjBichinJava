@@ -4,7 +4,7 @@ import org.example.controller.*;
 import org.example.repository.*;
 import org.example.model.*;
 import org.example.visao.cmd.*;
-
+import org.example.service.*;
 public class Main {
 
     public static void main(String[] args) {
@@ -25,7 +25,10 @@ public class Main {
         ClienteController clienteController = new ClienteController(clienteRepository);
         PetController petController = new PetController(petRepository, clienteRepository);
         ServicoController servicoController = new ServicoController(servicoRepository);
-        ServicoPrestadoController servicoPrestadoController = new ServicoPrestadoController(petRepository, servicoRepository, servicoPrestadoRepository);
+        ServicoPrestadoService servicoPrestadoService = new ServicoPrestadoService(servicoPrestadoRepository);
+        ServicoPrestadoController servicoPrestadoController = new ServicoPrestadoController(petRepository, servicoRepository, servicoPrestadoService, servicoPrestadoRepository);
+
+
 
         UiCmdPet uiCmdPet = new UiCmdPet(petController, clienteController);
         UiCmdServico uiCmdServico = new UiCmdServico(servicoController);

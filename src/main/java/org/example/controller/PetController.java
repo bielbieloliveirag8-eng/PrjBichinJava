@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import org.example.model.Cliente;
+import org.example.model.Especie;
 import org.example.model.Pet;
 import org.example.repository.ClienteRepository;
 import org.example.repository.PetRepository;
@@ -19,7 +20,7 @@ public class PetController {
         this.repositoryCliente = repositoryCliente;
     }
 
-    public void adicionar(int id, String nome, String especie, String raca, LocalDate nascimento, int idCliente) {
+    public void adicionar(int id, String nome, Especie especie, String raca, LocalDate nascimento, int idCliente) {
 
         Cliente cliente = repositoryCliente.buscarPorId(idCliente);
 
