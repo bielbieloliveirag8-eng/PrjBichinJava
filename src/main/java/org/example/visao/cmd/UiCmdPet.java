@@ -5,6 +5,7 @@ import org.example.controller.PetController;
 import org.example.model.Cliente;
 import org.example.model.Especie;
 import org.example.model.Pet;
+import org.example.util.Leitura;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -36,10 +37,8 @@ public class UiCmdPet {
             System.out.println("4 - Apagar Pet");
             System.out.println("0 - Voltar ao Menu Principal");
             System.out.println("========================");
-            System.out.print("Escolha uma opção: ");
 
-            opcao = teclado.nextInt();
-            teclado.nextLine();
+            opcao = Leitura.lerInteiro(teclado,"Escolha uma opção: ",true);
 
             switch (opcao) {
                 case 1:
@@ -67,19 +66,16 @@ public class UiCmdPet {
     private void adicionar() {
         System.out.println("\n--- Adicionar Pet ---");
 
-        System.out.print("Digite o ID do dono do pet: ");
-        int idCliente = teclado.nextInt();
-        teclado.nextLine();
+        int idCliente = Leitura.lerInteiro(teclado,"Digite o ID do dono do pet: ",true);
 
         Cliente cliente = controllerCliente.buscar(idCliente);
 
         if (cliente == null) {
             System.out.println("Cliente não encontrado!");
 
-            System.out.print("Nome do cliente: ");
-            String nomeCliente = teclado.nextLine();
+            String nomeCliente = Leitura.lerString(teclado,"Digite o nome do cliente:");
 
-            String telefoneCliente = lerTelefone("Telefone do cliente (formato (99) 99999-9999): ");
+            String telefoneCliente = Leitura.lerTelefone(teclado,"Telefone do cliente (formato (99) 99999-9999): ");
 
             controllerCliente.adicionar(idCliente, nomeCliente, telefoneCliente);
 
@@ -87,30 +83,15 @@ public class UiCmdPet {
             System.out.println("Cliente cadastrado e associado com sucesso!");
         }
 
-        System.out.print("ID do Pet: ");
-        int id = teclado.nextInt();
-        teclado.nextLine();
+        int id = Leitura.lerInteiro(teclado,"Digite o ID do pet: ",true);
 
-        System.out.print("Nome do Pet: ");
-        String nome = teclado.nextLine();
+        String nome = Leitura.lerString(teclado,"Digite o nome do pet:");
 
-        Especie especie = null;
+        Especie especie = Leitura.lerEnum(teclado, "Digite a espécie do pet:", Especie.class);
 
-        while (especie == null) {
-            System.out.print("Espécie do Pet (CAO, GATO, PASSARO, PEIXE):");
+        String raca =Leitura.lerString(teclado,"Digite a raça do pet:");
 
-            try {
-                especie = Especie.valueOf(teclado.nextLine().toUpperCase());
-            } catch (IllegalArgumentException e) {
-                System.out.println("Espécie inválida! Tente novamente.");
-            }
-        }
-
-
-        System.out.print("Raça do Pet: ");
-        String raca = teclado.nextLine();
-
-        LocalDate nascimento = lerData("Data de nascimento (dd/MM/yyyy): ");
+        LocalDate nascimento = Leitura.lerData(teclado,"Digite a data de nascimento do pet (dd/MM/yyyy):");
 
         controller.adicionar(
                 id, nome, especie, raca, nascimento, cliente.getId()
@@ -129,9 +110,7 @@ public class UiCmdPet {
 
     private void buscar() {
         System.out.println("\n--- Buscar Pets ---");
-        System.out.print("Digite o ID do Pet: ");
-        int id = teclado.nextInt();
-        teclado.nextLine();
+        int id = Leitura.lerInteiro(teclado,"Digite o ID do pet:",true);
 
         Pet pet = controller.buscar(id);
 
@@ -144,9 +123,7 @@ public class UiCmdPet {
 
     private void apagar() {
         System.out.println("\n--- Apagar Pets ---");
-        System.out.print("Digite o ID do Pet a remover: ");
-        int id = teclado.nextInt();
-        teclado.nextLine();
+        int id = Leitura.lerInteiro(teclado,"Digite o ID do pet a remover:",true);
 
         if (controller.remover(id)) {
             System.out.println("Pet removido com sucesso!");
@@ -155,28 +132,4 @@ public class UiCmdPet {
         }
     }
 
-    private String lerTelefone(String mensagem) {
-        String regex = "\\(\\d{2}\\) \\d{5}-\\d{4}";
-        while (true) {
-            System.out.print(mensagem);
-            String telefone = teclado.nextLine();
-            if (telefone.matches(regex)) {
-                return telefone;
-            }
-            System.out.println("Formato inválido! Use o padrão (99) 99999-9999.");
-        }
-    }
-
-    private LocalDate lerData(String mensagem) {
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        while (true) {
-            System.out.print(mensagem);
-            String entrada = teclado.nextLine();
-            try {
-                return LocalDate.parse(entrada, formato);
-            } catch (DateTimeParseException e) {
-                System.out.println("Data inválida ou fora do padrão dd/MM/yyyy. Tente novamente!");
-            }
-        }
-    }
 }

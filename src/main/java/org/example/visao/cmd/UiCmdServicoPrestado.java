@@ -5,6 +5,7 @@ import org.example.controller.ServicoController;
 import org.example.controller.ServicoPrestadoController;
 import org.example.model.Pet;
 import org.example.model.ServicoPrestado;
+import org.example.util.Leitura;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -40,10 +41,8 @@ public class UiCmdServicoPrestado {
             System.out.println("8 - Listar Servicos Prestado por Periodo");
             System.out.println("0 - Voltar ao Menu Principal");
             System.out.println("=======================================");
-            System.out.print("Escolha uma opção: ");
 
-            opcao = teclado.nextInt();
-            teclado.nextLine();
+            opcao = Leitura.lerInteiro(teclado,"Escolha uma opção:",true);
 
             switch (opcao) {
                 case 1:
@@ -119,12 +118,9 @@ public class UiCmdServicoPrestado {
     private void adicionar() {
         System.out.println("\n--- Adicionar Servico Prestado ---");
 
-        System.out.print("ID do Servico Prestado: ");
-        int idPrestado = teclado.nextInt();
+        int idPrestado = Leitura.lerInteiro(teclado,"Digite o ID do serviço prestado: ",true);
 
-        System.out.print("ID do Servico: ");
-        int idServico = teclado.nextInt();
-        teclado.nextLine();
+        int idServico = Leitura.lerInteiro(teclado,"Digite o ID do serviço: ",true);
 
         System.out.print("Data: ");
         LocalDate data;
@@ -135,8 +131,7 @@ public class UiCmdServicoPrestado {
             return;
         }
 
-        System.out.print("ID do Pet: ");
-        int idPet = teclado.nextInt();
+        int idPet = Leitura.lerInteiro(teclado,"Digite o ID do pet:",true);
 
         System.out.println(controllerServico.buscar(idServico));
 
@@ -156,8 +151,7 @@ public class UiCmdServicoPrestado {
     private void animaisDoDono() {
         System.out.println("\n--- Listar Animais do Dono ---");
 
-        System.out.print("Nome do dono: ");
-        String nome = teclado.nextLine();
+        String nome = Leitura.lerString(teclado,"Digite o nome do dono:");
 
         for (Pet pet : controller.buscarBichosPorNomeDono(nome)) {
             System.out.println(pet);
@@ -167,9 +161,7 @@ public class UiCmdServicoPrestado {
     private void apagar() {
         System.out.println("\n--- Apagar Servico Prestado ---");
 
-        System.out.print("Digite o ID do Servico Prestado a remover: ");
-        int id = teclado.nextInt();
-        teclado.nextLine();
+        int id = Leitura.lerInteiro(teclado,"Digite o ID do Servico Prestado a remover:",true);
 
         if (controller.removerServicoPrestado(id)) {
             System.out.println("Servico Prestado removido com sucesso!");
@@ -181,9 +173,7 @@ public class UiCmdServicoPrestado {
     private void maiorValor() {
         System.out.println("\n--- Listar Servico com Maior Valor do Cliente ---");
 
-        System.out.print("Digite o ID do Cliente: ");
-        int id = teclado.nextInt();
-        teclado.nextLine();
+        int id = Leitura.lerInteiro(teclado,"Digite o ID do cliente:",true);
 
         System.out.println("Maior Valor: R$" + controller.maiorValorPorCliente(controllerCliente.buscar(id)));
     }
@@ -199,9 +189,7 @@ public class UiCmdServicoPrestado {
     private void servicosDoCliente() {
         System.out.println("\n--- Listar Servicos do Cliente ---");
 
-        System.out.print("Digite o ID do Cliente: ");
-        int id = teclado.nextInt();
-        teclado.nextLine();
+        int id = Leitura.lerInteiro(teclado,"Digite o ID do cliente:",true);
 
         for (ServicoPrestado servicoPrestado : controller.buscarPorCliente(controllerCliente.buscar(id))) {
             System.out.println(servicoPrestado);
@@ -211,9 +199,7 @@ public class UiCmdServicoPrestado {
     private void buscar() {
         System.out.println("\n--- Buscar Servico Prestado ---");
 
-        System.out.print("Digite o ID do Servico Prestado: ");
-        int id = teclado.nextInt();
-        teclado.nextLine();
+        int id = Leitura.lerInteiro(teclado,"Digite o ID do serviço prestado:",true);
 
         ServicoPrestado servicoPrestado = controller.buscar(id);
 

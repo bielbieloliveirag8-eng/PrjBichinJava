@@ -163,4 +163,18 @@ public class Leitura {
             }
         }
     }
+
+    // Lê um telefone válido no formato (dd) ddddd-dddd
+    public static String lerTelefone(Scanner teclado, String mensagem) {
+        while (true) {
+            System.out.print(mensagem);
+            String entrada = teclado.nextLine().trim();
+
+            if (entrada.matches("\\(\\d{2}\\)\\s\\d{5}-\\d{4}")) {
+                return entrada;
+            }
+
+            System.out.println("Formato inválido! Utilize o padrão (99) 99999-9999");
+        }
+    }
 }

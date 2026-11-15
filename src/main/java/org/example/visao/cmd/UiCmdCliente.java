@@ -2,6 +2,7 @@ package org.example.visao.cmd;
 
 import org.example.controller.ClienteController;
 import org.example.model.Cliente;
+import org.example.util.Leitura;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -29,10 +30,7 @@ public class UiCmdCliente {
             System.out.println("4 - Apagar Cliente");
             System.out.println("0 - Voltar ao Menu Principal");
             System.out.println("=======================================");
-            System.out.print("Escolha uma opção: ");
-
-            opcao = teclado.nextInt();
-            teclado.nextLine();
+            opcao = Leitura.lerInteiro(teclado, "Escolha uma opção:", false);
 
             switch (opcao) {
                 case 1:
@@ -59,25 +57,11 @@ public class UiCmdCliente {
 
     private void adicionar() {
         System.out.println("\n--- Adicionar Cliente ---");
-        System.out.print("Digite o ID do cliente: ");
-        int id = teclado.nextInt();
-        teclado.nextLine();
+        int id = Leitura.lerInteiro(teclado, "Digite o ID do cliente:", true);
 
-        System.out.print("Digite o nome do cliente: ");
-        String nome = teclado.nextLine();
+        String nome = Leitura.lerString(teclado, "Digite o nome do cliente:");
 
-        String telefone = "";
-        boolean telefoneValido = false;
-        while (!telefoneValido) {
-            System.out.print("Digite o telefone (formato (dd) ddddd-dddd): ");
-            telefone = teclado.nextLine();
-
-            if (telefone.matches("\\(\\d{2}\\)\\s\\d{5}-\\d{4}")) {
-                telefoneValido = true;
-            } else {
-                System.out.println("Formato inválido!");
-            }
-        }
+        String telefone = Leitura.lerTelefone(teclado, "Digite o telefone (formato (99) 99999-9999): ");
 
         controller.adicionar(id, nome, telefone);
         System.out.println("Cliente adicionado com sucesso!");
@@ -98,9 +82,7 @@ public class UiCmdCliente {
 
     private void buscar() {
         System.out.println("\n--- Buscar cliente ---");
-        System.out.print("Digite o ID do cliente: ");
-        int id = teclado.nextInt();
-        teclado.nextLine();
+        int id = Leitura.lerInteiro(teclado, "Digite o ID do cliente: ", true);
 
         Cliente c = controller.buscar(id);
         if (c != null) {
@@ -112,9 +94,7 @@ public class UiCmdCliente {
 
     private void apagar() {
         System.out.println("\n--- Apagar cliente ---");
-        System.out.print("Digite o ID do cliente que deseja apagar: ");
-        int id = teclado.nextInt();
-        teclado.nextLine();
+        int id = Leitura.lerInteiro(teclado, "Digite o ID do cliente que deseja apagar: ", true);
 
         boolean sucesso = controller.remover(id);
         if (sucesso) {
