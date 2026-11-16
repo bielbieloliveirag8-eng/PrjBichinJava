@@ -8,8 +8,6 @@ import org.example.model.Pet;
 import org.example.util.Leitura;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -85,6 +83,10 @@ public class UiCmdPet {
         }
 
         int id = Leitura.lerInteiro(teclado,"Digite o ID do pet: ",true);
+        while (controller.buscar(id)!=null) {
+            System.out.println("ID já está cadastrado!");
+            id = Leitura.lerInteiro(teclado, "Digite outro ID: ", true);
+        }
 
         String nome = Leitura.lerString(teclado,"Digite o nome do pet:");
 
@@ -94,9 +96,7 @@ public class UiCmdPet {
 
         LocalDate nascimento = Leitura.lerData(teclado,"Digite a data de nascimento do pet (dd/MM/yyyy):");
 
-        controller.adicionar(
-                id, nome, especie, raca, nascimento, cliente.getId()
-        );
+        controller.adicionar(id, nome, especie, raca, nascimento, cliente.getId());
 
         System.out.println("Pet adicionado com sucesso!");
     }

@@ -79,6 +79,10 @@ public class UiCmdServico {
         System.out.println("\n--- Adicionar Servico ---");
 
         int id = Leitura.lerInteiro(teclado, "ID do Servico: ", true);
+        while (controller.buscar(id)!=null) {
+            System.out.println("ID já está cadastrado!");
+            id = Leitura.lerInteiro(teclado, "Digite outro ID: ", true);
+        }
 
         String descricao = Leitura.lerString(teclado, "Descricao: ");
 

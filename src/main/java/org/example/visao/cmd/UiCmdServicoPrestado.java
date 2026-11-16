@@ -8,7 +8,6 @@ import org.example.model.ServicoPrestado;
 import org.example.util.Leitura;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -113,6 +112,10 @@ public class UiCmdServicoPrestado {
         System.out.println("\n--- Adicionar Servico Prestado ---");
 
         int idPrestado = Leitura.lerInteiro(teclado,"Digite o ID do serviço prestado: ",true);
+        while (controller.buscar(idPrestado)!=null) {
+            System.out.println("ID já está cadastrado!");
+            idPrestado = Leitura.lerInteiro(teclado, "Digite outro ID: ", true);
+        }
 
         int idServico = Leitura.lerInteiro(teclado,"Digite o ID do serviço: ",true);
 

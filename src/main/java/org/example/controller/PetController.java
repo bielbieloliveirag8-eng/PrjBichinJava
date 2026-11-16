@@ -27,8 +27,6 @@ public class PetController {
         if (cliente != null) {
             Pet pet = new Pet(id, nome, especie, raca, nascimento, cliente);
             repository.adicionar(pet);
-        } else {
-            System.out.println("Erro: Cliente não encontrado. Registe o cliente primeiro!");
         }
     }
 

@@ -59,6 +59,11 @@ public class UiCmdCliente {
         System.out.println("\n--- Adicionar Cliente ---");
         int id = Leitura.lerInteiro(teclado, "Digite o ID do cliente:", true);
 
+        while (controller.buscar(id)!=null) {
+            System.out.println("ID já está cadastrado!");
+            id = Leitura.lerInteiro(teclado, "Digite outro ID: ", true);
+        }
+
         String nome = Leitura.lerString(teclado, "Digite o nome do cliente:");
 
         String telefone = Leitura.lerTelefone(teclado, "Digite o telefone (formato (99) 99999-9999): ");
