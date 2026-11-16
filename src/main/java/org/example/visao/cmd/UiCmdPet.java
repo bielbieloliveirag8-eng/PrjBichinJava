@@ -27,15 +27,17 @@ public class UiCmdPet {
         int opcao;
 
         do {
-            System.out.println("========================");
-            System.out.println("      GESTÃO DE PETS");
-            System.out.println("========================");
-            System.out.println("1 - Adicionar Pet");
-            System.out.println("2 - Listar Pets");
-            System.out.println("3 - Buscar Pet por ID");
-            System.out.println("4 - Apagar Pet");
-            System.out.println("0 - Voltar ao Menu Principal");
-            System.out.println("========================");
+            System.out.println("+=====================================+");
+            System.out.println("|           GESTÃO DE PETS            |");
+            System.out.println("+=====================================+");
+            System.out.println("|                                     |");
+            System.out.println("|  1 - Adicionar Pet                  |");
+            System.out.println("|  2 - Listar Pets                    |");
+            System.out.println("|  3 - Buscar Pet por ID              |");
+            System.out.println("|  4 - Apagar Pet                     |");
+            System.out.println("|  0 - Voltar ao Menu Principal       |");
+            System.out.println("|                                     |");
+            System.out.println("+=====================================+");
 
             opcao = Leitura.lerInteiro(teclado,"Escolha uma opção: ",true);
 

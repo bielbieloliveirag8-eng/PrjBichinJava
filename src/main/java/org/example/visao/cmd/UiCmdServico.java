@@ -20,15 +20,17 @@ public class UiCmdServico {
         int opcao;
 
         do {
-            System.out.println("\n=======================================");
-            System.out.println("         GESTÃO DE SERVICOS");
-            System.out.println("=======================================");
-            System.out.println("1 - Adicionar Servico");
-            System.out.println("2 - Listar Servico");
-            System.out.println("3 - Buscar Servico por ID");
-            System.out.println("4 - Apagar Servico");
-            System.out.println("0 - Voltar ao Menu Principal");
-            System.out.println("=======================================");
+            System.out.println("+=====================================+");
+            System.out.println("|          GESTÃO DE SERVIÇOS         |");
+            System.out.println("+=====================================+");
+            System.out.println("|                                     |");
+            System.out.println("|  1 - Adicionar Serviço              |");
+            System.out.println("|  2 - Listar Serviços                |");
+            System.out.println("|  3 - Buscar Serviço por ID          |");
+            System.out.println("|  4 - Apagar Serviço                 |");
+            System.out.println("|  0 - Voltar ao Menu Principal       |");
+            System.out.println("|                                     |");
+            System.out.println("+=====================================+");
 
             opcao = Leitura.lerInteiro(teclado,"Escolha uma opção: ", true);
 

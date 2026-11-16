@@ -26,15 +26,17 @@ public class UI_Cmd {
         int opcao;
 
         do {
-            System.out.println("\n========================");
-            System.out.println("     🐾 PET SHOP");
-            System.out.println("========================");
-            System.out.println("1 - Clientes");
-            System.out.println("2 - Pets");
-            System.out.println("3 - Serviços");
-            System.out.println("4 - Serviços Prestados");
-            System.out.println("0 - Sair");
-            System.out.println("========================");
+            System.out.println("+================================+");
+            System.out.println("|          🐾 PET SHOP           |");
+            System.out.println("+================================+");
+            System.out.println("|                                |");
+            System.out.println("|  1 - Clientes                  |");
+            System.out.println("|  2 - Pets                      |");
+            System.out.println("|  3 - Serviços                  |");
+            System.out.println("|  4 - Serviços Prestados        |");
+            System.out.println("|  0 - Sair                      |");
+            System.out.println("|                                |");
+            System.out.println("+================================+");
 
             opcao = Leitura.lerInteiro(teclado, "Escolha uma opção: ", true);
 

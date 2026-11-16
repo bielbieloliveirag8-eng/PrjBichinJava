@@ -7,6 +7,7 @@ import org.example.model.Pet;
 import org.example.model.ServicoPrestado;
 import org.example.util.Leitura;
 
+import javax.sound.midi.Soundbank;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
@@ -28,19 +29,21 @@ public class UiCmdServicoPrestado {
         int opcao;
 
         do {
-            System.out.println("\n=======================================");
-            System.out.println("      GESTÃO DE SERVICOS PRESTADOS");
-            System.out.println("=======================================");
-            System.out.println("1 - Adicionar Servico Prestado");
-            System.out.println("2 - Buscar Servico Prestado");
-            System.out.println("3 - Apagar Servico");
-            System.out.println("4 - Listar Servicos Prestados");
-            System.out.println("5 - Listar Animais do Cliente");
-            System.out.println("6 - Listar Servico com Maior Valor do Cliente");
-            System.out.println("7 - Listar Servicos do Cliente");
-            System.out.println("8 - Listar Servicos Prestado por Periodo");
-            System.out.println("0 - Voltar ao Menu Principal");
-            System.out.println("=======================================");
+            System.out.println("+=====================================+");
+            System.out.println("|    GESTÃO DE SERVIÇOS PRESTADOS     |");
+            System.out.println("+=====================================+");
+            System.out.println("|                                     |");
+            System.out.println("|  1 - Adicionar Serviço Prestado     |");
+            System.out.println("|  2 - Buscar Serviço Prestado        |");
+            System.out.println("|  3 - Apagar Serviço                 |");
+            System.out.println("|  4 - Listar Serviços Prestados      |");
+            System.out.println("|  5 - Listar Animais do Cliente      |");
+            System.out.println("|  6 - Serviço de Maior Valor Cliente |");
+            System.out.println("|  7 - Listar Serviços do Cliente     |");
+            System.out.println("|  8 - Serviços Prestados por Período |");
+            System.out.println("|  0 - Voltar ao Menu Principal       |");
+            System.out.println("|                                     |");
+            System.out.println("+=====================================+");
 
             opcao = Leitura.lerInteiro(teclado,"Escolha uma opção:",true);
 
@@ -125,7 +128,9 @@ public class UiCmdServicoPrestado {
 
         System.out.println(controllerServico.buscar(idServico));
 
-        double valor = Leitura.lerDouble(teclado, "Valor cobrado: ", true);
+        System.out.println("Valor cobrado:");
+        double valor =teclado.nextDouble();
+
         try {
             controller.adicionar(idPrestado, idPet, idServico, valor, data);
             System.out.println("Servico Prestado adicionado com sucesso!");

@@ -21,15 +21,17 @@ public class UiCmdCliente {
         int opcao;
 
         do {
-            System.out.println("\n=======================================");
-            System.out.println("         GESTÃO DE CLIENTES");
-            System.out.println("=========================================");
-            System.out.println("1 - Adicionar Cliente");
-            System.out.println("2 - Listar Clientes");
-            System.out.println("3 - Buscar Cliente por ID");
-            System.out.println("4 - Apagar Cliente");
-            System.out.println("0 - Voltar ao Menu Principal");
-            System.out.println("=======================================");
+            System.out.println("+=====================================+");
+            System.out.println("|          GESTÃO DE CLIENTES         |");
+            System.out.println("+=====================================+");
+            System.out.println("|                                     |");
+            System.out.println("|  1 - Adicionar Cliente              |");
+            System.out.println("|  2 - Listar Clientes                |");
+            System.out.println("|  3 - Buscar Cliente por ID          |");
+            System.out.println("|  4 - Apagar Cliente                 |");
+            System.out.println("|  0 - Voltar ao Menu Principal       |");
+            System.out.println("|                                     |");
+            System.out.println("+=====================================+");
             opcao = Leitura.lerInteiro(teclado, "Escolha uma opção:", false);
 
             switch (opcao) {
