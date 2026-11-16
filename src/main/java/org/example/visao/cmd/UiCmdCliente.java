@@ -72,7 +72,7 @@ public class UiCmdCliente {
         ArrayList<Cliente> clientes = controller.listar();
 
         if (clientes.isEmpty()) {
-            System.out.println("Nenhum cliente registado.");
+            System.out.println("Não possui clientes.");
         } else {
             for (Cliente c : clientes) {
                 System.out.println(c);

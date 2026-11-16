@@ -10,6 +10,7 @@ import org.example.util.Leitura;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.List;
 import java.util.Scanner;
 
 public class UiCmdPet {
@@ -103,7 +104,14 @@ public class UiCmdPet {
     private void listar() {
         System.out.println("\n--- Lista de Pets ---");
 
-        for (Pet pet : controller.listar()) {
+        List<Pet> pets = controller.listar();
+
+        if (pets.isEmpty()){
+            System.out.println("Não possui pets.");
+            return;
+        }
+
+        for (Pet pet : pets) {
             System.out.println(pet);
         }
     }

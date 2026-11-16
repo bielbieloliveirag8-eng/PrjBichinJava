@@ -9,6 +9,7 @@ import org.example.util.Leitura;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
 
 public class UiCmdServicoPrestado {
@@ -91,25 +92,18 @@ public class UiCmdServicoPrestado {
     private void servicosPorPeriodo() {
         System.out.println("\n--- Listar Servicos Por Periodo ---");
 
-        System.out.print("Data inicial: ");
-        LocalDate dataInicial;
-        try {
-            dataInicial = LocalDate.parse(teclado.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        } catch (java.time.format.DateTimeParseException e) {
-            System.out.println("Data inválida!");
+        LocalDate dataInicial = Leitura.lerData(teclado, "Data inicial: ");
+
+        LocalDate dataFinal = Leitura.lerData(teclado, "Data final: ");
+
+        List<ServicoPrestado> servicosPrestados = controller.buscarPorPeriodo(dataInicial, dataFinal);
+
+        if (servicosPrestados.isEmpty()){
+            System.out.println("Não possui serviços prestados nesse periodo.");
             return;
         }
 
-        System.out.print("Data final: ");
-        LocalDate dataFinal;
-        try {
-            dataFinal = LocalDate.parse(teclado.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        } catch (java.time.format.DateTimeParseException e) {
-            System.out.println("Data inválida!");
-            return;
-        }
-
-        for (ServicoPrestado servicoPrestado : controller.buscarPorPeriodo(dataInicial, dataFinal)) {
+        for (ServicoPrestado servicoPrestado : servicosPrestados) {
             System.out.println(servicoPrestado);
         }
 
@@ -122,22 +116,13 @@ public class UiCmdServicoPrestado {
 
         int idServico = Leitura.lerInteiro(teclado,"Digite o ID do serviço: ",true);
 
-        System.out.print("Data: ");
-        LocalDate data;
-        try {
-            data = LocalDate.parse(teclado.nextLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        } catch (java.time.format.DateTimeParseException e) {
-            System.out.println("Data inválida!");
-            return;
-        }
+        LocalDate data = Leitura.lerData(teclado, "Data: ");
 
         int idPet = Leitura.lerInteiro(teclado,"Digite o ID do pet:",true);
 
         System.out.println(controllerServico.buscar(idServico));
 
-        System.out.print("Valor cobrado: ");
-        double valor = teclado.nextDouble();
-        teclado.nextLine();
+        double valor = Leitura.lerDouble(teclado, "Valor cobrado: ", true);
         try {
             controller.adicionar(idPrestado, idPet, idServico, valor, data);
             System.out.println("Servico Prestado adicionado com sucesso!");
@@ -153,7 +138,14 @@ public class UiCmdServicoPrestado {
 
         String nome = Leitura.lerString(teclado,"Digite o nome do dono:");
 
-        for (Pet pet : controller.buscarBichosPorNomeDono(nome)) {
+        List<Pet> pets = controller.buscarBichosPorNomeDono(nome);
+
+        if (pets.isEmpty()){
+            System.out.println("Dono não encontrado ou não possui animais.");
+            return;
+        }
+
+        for (Pet pet : pets) {
             System.out.println(pet);
         }
     }
@@ -175,11 +167,25 @@ public class UiCmdServicoPrestado {
 
         int id = Leitura.lerInteiro(teclado,"Digite o ID do cliente:",true);
 
-        System.out.println("Maior Valor: R$" + controller.maiorValorPorCliente(controllerCliente.buscar(id)));
+        double valor = controller.maiorValorPorCliente(controllerCliente.buscar(id));
+
+        if (valor == 0){
+            System.out.println("O cliente não possui serviços prestados.");
+            return;
+        }
+
+        System.out.println("Maior Valor: R$" + valor);
     }
 
     private void listar() {
         System.out.println("\n--- Listar Servicos Prestados ---");
+
+        List<ServicoPrestado> servicos = controller.listar();
+
+        if (servicos.isEmpty()){
+            System.out.println("Não possui serviços prestados.");
+            return;
+        }
 
         for (ServicoPrestado servicoPrestado : controller.listar()) {
             System.out.println(servicoPrestado);
@@ -191,7 +197,14 @@ public class UiCmdServicoPrestado {
 
         int id = Leitura.lerInteiro(teclado,"Digite o ID do cliente:",true);
 
-        for (ServicoPrestado servicoPrestado : controller.buscarPorCliente(controllerCliente.buscar(id))) {
+        List<ServicoPrestado> servicos = controller.buscarPorCliente(controllerCliente.buscar(id));
+
+        if (servicos.isEmpty()) {
+            System.out.println("Este cliente ainda não possui serviços prestados.");
+            return;
+        }
+
+        for (ServicoPrestado servicoPrestado : servicos) {
             System.out.println(servicoPrestado);
         }
     }

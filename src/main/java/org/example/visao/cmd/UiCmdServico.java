@@ -4,6 +4,7 @@ import org.example.controller.ServicoController;
 import org.example.model.Servico;
 import org.example.util.Leitura;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class UiCmdServico {
@@ -62,7 +63,14 @@ public class UiCmdServico {
     private void listar(){
         System.out.println("\n--- Listar Servicos ---");
 
-        for (Servico servico : controller.listar()) {
+        List<Servico> servicos = controller.listar();
+
+        if (servicos.isEmpty()){
+            System.out.println("Não possui serviços.");
+            return;
+        }
+
+        for (Servico servico : servicos) {
             System.out.println(servico);
         }
     }
